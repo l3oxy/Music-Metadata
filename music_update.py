@@ -1,11 +1,11 @@
 '''
 https://github.com/l3oxy/Music-Metadata
 '''
-import concurrent.futures
-import logging
-import subprocess
-import sys
-import time # this just for benchmarking.
+import concurrent.futures # for multiprocessing
+import logging # for logging
+import subprocess # for creating subprocesses via the underlying OS
+import sys # for management of this current process
+import time # for benchmarking.
 
 # Configure logging settings.
 logging.basicConfig(level=logging.DEBUG, format="%(levelname)s:%(message)s")
@@ -127,18 +127,21 @@ def process_flac(flac_listing, ID_int):
     logging.info(ID + ":Complete")
 
 
+# Create a generator to make an ID for each flac processing process.
 id_generator = iter(range(1, (flacs_output_list_len + 1))) # Calling next() on this returns an int to be used as an identifier for each process.
+
+# Process each flac via a new process.
 completed_processes = 0
-
-
 with concurrent.futures.ProcessPoolExecutor() as executor:
     list_of_processes = [executor.submit(process_flac, flac_listing, next(id_generator)) for flac_listing in flacs_output_list]
 
     for f in concurrent.futures.as_completed(list_of_processes):
         completed_processes += 1
 
+# Record finish time.
 benchmark_finish = time.perf_counter()
 
+# Log summary results.
 if flacs_output_list_len == completed_processes:
     logging.info("Attempted operations on all " + str(flacs_output_list_len) + " file(s) detected, in " +
             str(round(benchmark_finish - benchmark_start, 3)) + " second(s).")
