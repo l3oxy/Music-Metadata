@@ -6,7 +6,7 @@ Expects the following:
 1. Python3.7+
 2. A shell that supports the "ls" command. (e.g. BASH, SH)
 3. "python-mutagen" or "python3-mutagen" package to be installed, which brings command "mid3v2". (e.g. on Ubuntu use "sudo apt-get update -y" and then "sudo apt install python-mutagen", but if that fails then try "sudo apt install python3-mutagen")
-4. Flac files to have filename format of "Song_-_Artist_-_{videoID}.flac"
+4. Flac files to have filename format of "Song_-_Artist_-_{videoID}.flac" , 
 though the "_-_{videoID}" part is optional.
 
 Syntax:
@@ -56,7 +56,7 @@ else:
     logging.debug("DIRECTORY_VERIFICATION: " + directory_check_output.stdout.rstrip())
 
 # Attempt to identify all flac files. If unsuccessful, error out.
-flacs_output = subprocess.run(args="ls -l --time-style=full-iso " + directory + "*.flac", capture_output=True, shell=True, text=True, timeout=30)
+flacs_output = subprocess.run(args="ls -l -1 --time-style=full-iso --ignore-backups " + directory + "*.flac", capture_output=True, shell=True, text=True, timeout=30)
 if flacs_output.returncode == 0:
     logging.debug("LISTINGS: \n" + flacs_output.stdout.rstrip())
 else:
