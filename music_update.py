@@ -1,19 +1,5 @@
 '''
-Progam to update song metadata for all flac files.
-By l3oxy
-
-Expects the following:
-1. Python3.7+
-2. A shell that supports the "ls" command. (e.g. BASH, SH)
-3. "python-mutagen" or "python3-mutagen" package to be installed, which brings command "mid3v2". (e.g. on Ubuntu use "sudo apt-get update -y" and then "sudo apt install python-mutagen", but if that fails then try "sudo apt install python3-mutagen")
-4. Flac files to have filename format of "Song_-_Artist_-_{videoID}.flac" , 
-though the "_-_{videoID}" part is optional.
-
-Syntax:
-    python3.7 this_script.py [/home/me/music/]
-
-    Where the last argument is optional (indicated by the square brackets),
-    but, if used, specifies the directory to operate in.
+https://github.com/l3oxy/Music-Metadata
 '''
 import concurrent.futures
 import logging
