@@ -1,8 +1,8 @@
 # Music-Metadata
-Mutliprocess program to update song metadata (song, author, etc) for all flac files in a directory, by parsing their filename.
+Personal mutliprocess program to update song metadata (song, author, etc) for all flac files in a directory, by parsing their filename.
 
 # Expectations
-1. Python3.7+
+1. Python 3.7+
 2. A shell that supports the `ls` command. (e.g. BASH, SH)
 3. A shell that can use command `mid3v2`, which comes via installation of one of the following packages, `python-mutagen` or `python3-mutagen`. \
 (e.g. on Ubuntu use `apt-get update -y`, and then `apt install python-mutagen`, but if that fails then try `apt install python3-mutagen`)
