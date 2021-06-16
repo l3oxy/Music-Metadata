@@ -103,17 +103,17 @@ def process_flac(flac_listing, ID_int):
     logging.info(ID + ":Filename: " + filename)
 
     # Song
-    filename_parts = filename.split(".")[0].split("_-_") # RFE: find a better way to remove the ".flac" at the end.
-    song = filename_parts[0].replace("_", " ").strip()
+    filename_parts_no_extension = filename[:filename.rfind(".")].split("_-_")
+    song = filename_parts_no_extension[0].replace("_", " ").strip()
     logging.info(ID + ":Song:     " + song)
 
     # Artist
-    artist = filename_parts[1].replace("_", " ").strip()
+    artist = filename_parts_no_extension[1].replace("_", " ").strip()
     logging.info(ID + ":Artist:   " + artist)
 
     # (Optionally) the songID in braces (which may also contain the character "-")
-    if filename_parts[-1].startswith("{") and filename_parts[-1].endswith("}"):
-        videoID = filename_parts[-1].strip("{}")
+    if filename_parts_no_extension[-1].startswith("{") and filename_parts_no_extension[-1].endswith("}"):
+        videoID = filename_parts_no_extension[-1].strip("{}")
     else:
         videoID = ""
     argument_to_add_videoID_as_comment = "--comment=" + videoID
