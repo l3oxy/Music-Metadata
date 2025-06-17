@@ -1,5 +1,5 @@
 # Music-Metadata
-Personal multiprocess program to update song metadata (song, author, etc) for all flac files in a directory, by parsing their filename.
+Personal multi-process script to update song metadata (song, author, etc) for all flac files in a directory, by parsing each's filename.
 
 # Expectations
 1. Python 3.7+
